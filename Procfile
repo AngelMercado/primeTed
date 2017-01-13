@@ -1,1 +1,1 @@
-web: gunicorn SistemaDiscusiones.wsgi
+web: gunicorn primeted.wsgi
