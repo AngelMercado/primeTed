@@ -1,0 +1,172 @@
+{% extends 'baseHome.html'%}
+{% block title %}Registrate{% endblock %}
+
+{% block nav %}
+	 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand page-scroll" href="#page-top">Plataforma de estudio</a>
+            </div> 
+        </div>
+    </nav>
+{% endblock %}
+{% block header-content %}
+ <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                 
+                 <h2>Introduce tu información</h2>
+                  <form role="form"  method="POST">
+                    {%csrf_token%}
+                    <div class="container-fluid">
+                          <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                    <!-- input nombre-->
+                                    {{form.is_master}}
+                                    {{form.is_master.errors}}
+                                    {{form.username}}
+                                    {{form.username.errors}}
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                
+                                </div>
+
+
+                          </div>
+                        <br>
+                          <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                    <!-- input nombre-->
+                                    {{form.first_name}}
+                                    {{form.first_name.errors}}
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                
+                                </div>
+
+
+                          </div>
+                        <br>
+                          <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                    <!-- input apellidos-->
+                                    {{form.last_name}}
+                                    {{form.last_name.errors}}
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                   
+                                </div>
+
+
+                          </div>
+                          <br>
+                           <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                  <!-- input correo-->
+                                 {{form.email}}
+                                {{form.email.errors}}
+
+                                  
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                   
+                                </div>
+
+
+                          </div>
+                          <br>
+                           <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                    <!-- input password-->
+                                    {{form.password}}
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                   
+                                </div>
+
+
+                          </div>
+                          <br>  
+                          <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                  <!-- input confirmar password-->
+                                    <input type="password" class="form-control" placeholder="Confirma tu password" required>
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                   
+                                </div>
+
+
+                          </div>
+                          <br>
+                          <div class="row ">
+                                <div class="col-sm-5 col-md-4">
+                                    
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                  <input type="submit" value="Registrarse" class="btn btn-default">
+                                </div>
+                                <div class="col-sm-5 col-md-4">
+                                  
+                                </div>
+
+
+                          </div>
+                          <br>
+                          <br>
+                          
+
+
+                    </div>
+                 
+                  
+                 </form>
+
+                       
+                        
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block footer%}
+	<footer  id="contact">
+	    <div class="container">
+	        <div class="row">
+	           <div class="col-lg-12 text-center">
+	                <h2 >Desarrolladores</h2>
+	                <hr class="primary">
+	            </div>
+	            <div class="col-lg-4 col-lg-offset-2 text-center">
+	                
+	                <p>Angel Enrique Mercado</p>
+	                <p>myjava@outlook.es</p>
+	            </div>
+	            <div class="col-lg-4 text-center">
+	                <p>Luis Miguel Sanavio</p>
+	                <p>me@gmail.com</p>
+	            </div>
+	        </div>
+	    </div>
+	</footer>
+{% endblock %}

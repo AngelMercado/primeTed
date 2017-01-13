@@ -1,0 +1,370 @@
+{% extends 'basePanel.html'%}
+
+<!-- start-header-->
+{% block header %}
+<header class="header dark-bg">
+      <div class="toggle-nav">
+          <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+      </div>
+
+      <!--logo start-->
+      <a href="{% url 'users:panel'%}" class="logo">Prime<span class="lite">Ted</span></a>
+      <!--logo end-->
+
+
+      <div class="top-nav notification-row">                
+          <!-- notificatoin dropdown start-->
+          <ul class="nav pull-right top-menu">
+              
+              
+              <!-- inbox notificatoin start-->
+              <li id="mail_notificatoin_bar" class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                      <i class="icon-envelope-l"></i>
+                      <span class="badge bg-important">1</span>
+                  </a>
+                  <ul class="dropdown-menu extended inbox">
+                      <div class="notify-arrow notify-arrow-blue"></div>
+                      <li>
+                          <p class="blue">tienes 1 mensaje</p>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                              <span class="subject">
+                              <span class="from">Administrador</span>
+                              <span class="time">1 dia</span>
+                              </span>
+                              <span class="message">
+                                  Bienvenido a la plataforma
+                              </span>
+                          </a>
+                      </li>
+                      
+                      <li>
+                          <a href="#">See all messages</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- inbox notificatoin end -->
+              <!-- alert notification start-->
+              <li id="alert_notificatoin_bar" class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                      <i class="icon-bell-l"></i>
+                      <span class="badge bg-important"></span>
+                  </a>
+                  <ul class="dropdown-menu extended notification">
+                      <div class="notify-arrow notify-arrow-blue"></div>
+                      <li>
+                          <p class="blue">No tienes nuevas notificaciones</p>
+                      </li>
+                                    
+                      <li>
+                          <a href="#">See all notifications</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- alert notification end-->
+              <!-- user login dropdown start-->
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                      <span class="profile-ava">
+                          <img alt="" src="{{user.avatar}}" width="45px" height="45px">
+                      </span>
+                      <span class="username">{{user.username}}</span>
+                      <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu extended logout">
+                      <div class="log-arrow-up"></div>
+                      <li class="eborder-top">
+                          <a href="{% url 'users:panel'%}"><i class="icon_profile"></i> Perfil</a>
+                      </li>
+                      
+                      <li>
+                          <a href="{% url 'users:logout'%}"><i class="icon_key_alt"></i> Salir</a>
+                      </li>
+                      
+                     
+                  </ul>
+              </li>
+              <!-- user login dropdown end -->
+          </ul>
+          <!-- notificatoin dropdown end-->
+      </div>
+</header>      
+{% endblock %}
+<!--end header -->
+<!--start aside-->
+{%block aside%}
+        <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu"> 
+              {% if user.is_master %}               
+                  <li class="">
+                      <a class="" href="{%url 'courses:CourseCreate' 10%}">
+                          <i class="icon_house_alt"></i>
+                          <span>Nuevo Grupo</span>
+                      </a>
+                  </li>
+              {% endif %}
+                  {%if not user.is_master %}
+                    <li class="">
+                      <a class="" href="{%url 'courses:Inscripcion' 10  %}">
+                          <span>INSCRIBIRME</span>
+                      </a>
+                  </li> 
+                  {% endif %}
+                  <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Grupos</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                          {%for course in courses%}
+
+                            <a style=""class="" href="{% url 'courses:Info' course.id%}"> 
+                              <li>
+                                <h9>{{course.materia}} {{course.salon}}</h9>
+                              </li>    
+                            </a>
+                                                       
+                          {%endfor%}
+                                                 
+                        </ul>
+                    </li>       
+                 
+                  
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      
+{% endblock %}
+<!--end aside-->
+<!--start mainContent-->
+{% block mainContent%}
+     <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+          		  <div class="row">
+          				<div class="col-lg-12">
+          					<h3 class="page-header">Perfil</h3>
+          					<ol class="breadcrumb">
+          						<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+          						<li><i class="icon_documents_alt"></i>Secciones</li>
+          						<li><i ></i>Perfil</li>
+          					</ol>
+          				</div>
+          			</div>
+                <div class="row">
+                  <!-- profile-widget -->
+                  <div class="col-lg-12">
+                      <div class="profile-widget profile-widget-info">
+                            <div class="panel-body">
+                              <div class="col-lg-2 col-sm-2">
+                                <h4>{{user.first_name}} {{user.last_name}}</h4>               
+                                <div class="follow-ava">
+                                    <img src="{{user.avatar}}" />
+                                </div>
+                                {% if user.is_master%}
+                                  <h6>Maestro</h6>
+                                  {% else %}
+                                  <h6>Alumno</h6>
+                                {% endif %}
+                              </div>
+                              <div class="col-lg-4 col-sm-4 follow-info">
+                                  <p>{{user.paiz}}</p>
+                                  <p>{{user.sitio_web}}</p>
+  								<p><i class="fa fa-twitter">{{user.username}}</i></p>
+                                  <h6>
+                                      <span><i class="icon_clock_alt"></i>11:05 AM</span>
+                                      <span><i class="icon_calendar"></i>25.10.13</span>
+                                      <span><i class="icon_pin_alt"></i>NY</span>
+                                  </h6>
+                              </div>
+                              <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                        <ul>
+                                            <li class="active">
+                                                
+                                                <i class="fa fa-comments fa-2x"> </i><br>
+  											  
+  											  Comenta en los post de tus grupos
+  											  para resolver tus dudas
+                                            </li>
+  										   
+                                        </ul>
+                              </div>
+  							
+  							<div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                        <ul>
+                                            <li class="active">
+                                                
+                                                <i class="fa fa-tachometer fa-2x"> </i><br>
+  											  
+  											 Aumenta la productividad de tus proyectos,
+  											 y el trabajo colaborativo
+                                            </li>
+  										   
+                                        </ul>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+                </div>
+                <!-- page start-->
+                <div class="row">
+                   <div class="col-lg-12">
+                      <section class="panel">
+                            <header class="panel-heading tab-bg-info">
+                                <ul class="nav nav-tabs">
+                                   
+                                    <li>
+                                        <a data-toggle="tab" href="#profile">
+                                            <i class="icon-user"></i>
+                                            Perfil
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#edit-profile">
+                                            <i class="icon-envelope"></i>
+                                            Editar Perfil
+                                        </a>
+                                    </li>
+                                </ul>
+                            </header>
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                   
+                                    <!-- profile -->
+                                    <div id="profile" class="tab-pane active">
+                                      <section class="panel">
+                                        <div class="bio-graph-heading">
+                                            {{user.acerca_de}}
+                                        </div>
+                                        <div class="panel-body bio-graph-info">
+                                            <h1>Bibliografía</h1>
+                                            <div class="row">
+                                                <div class="bio-row">
+                                                    <p><span>First Name </span>: {{user.first_name}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Last Name </span>: {{user.last_name}}</p>
+                                                </div>                                              
+                                                <div class="bio-row">
+                                                    <p><span>Birthday</span>: 2 Agosto 1987</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Country </span>: {{user.paiz}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Occupation </span>: {{user.ocupacion}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Email </span>: {{user.email}}</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Mobile </span>: (+6283) 456 789</p>
+                                                </div>
+                                                <div class="bio-row">
+                                                    <p><span>Phone </span>:  (+021) 956 789123</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </section>
+                                        <section>
+                                            <div class="row">                                              
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <!-- edit-profile -->
+                                    <div id="edit-profile" class="tab-pane">
+                                      <section class="panel">                                          
+                                            <div class="panel-body bio-graph-info">
+                                                <h1> Profile Info</h1>
+                                                <form class="form-horizontal" role="form">    
+
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">User name</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="f-name" placeholder="{{user.username}}">
+                                                        </div>
+                                                    </div>                                      
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">First Name</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="f-name" placeholder="{{user.first_name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Last Name</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="l-name" placeholder="{{user.last_name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">About Me</label>
+                                                        <div class="col-lg-10">
+                                                            <textarea name="" id="" class="form-control" cols="30" rows="5" placeholder="{{user.acerca_de}}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Country</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="c-name" placeholder="{{user.paiz}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Birthday</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="b-day" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Occupation</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="occupation" placeholder="{{user.ocupacion}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Email</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="email" placeholder="{{user.email}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Mobile</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="mobile" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-lg-2 control-label">Website URL</label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="url" placeholder="{{user.sitio_web}}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-lg-offset-2 col-lg-10">
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                            <button type="button" class="btn btn-danger">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                   </div>
+                </div>
+
+              <!-- page end-->
+          </section>
+      </section>
+      <!--main content end-->
+{% endblock %}

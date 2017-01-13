@@ -1,0 +1,245 @@
+{% extends 'basePanel.html'%}
+
+<!-- start-header-->
+{% block header %}
+<header class="header dark-bg">
+      <div class="toggle-nav">
+          <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+      </div>
+
+      <!--logo start-->
+      <a href="{% url 'users:panel'%}" class="logo">Plataforma D<span class="lite">E Estudio</span></a>
+      <!--logo end-->
+
+      <div class="top-nav notification-row">                
+          <!-- notificatoin dropdown start-->
+          <ul class="nav pull-right top-menu">
+              
+              
+              <!-- task notificatoin end -->
+              <!-- inbox notificatoin start-->
+              <li id="mail_notificatoin_bar" class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                      <i class="icon-envelope-l"></i>
+                      <span class="badge bg-important">1</span>
+                  </a>
+                  <ul class="dropdown-menu extended inbox">
+                      <div class="notify-arrow notify-arrow-blue"></div>
+                      <li>
+                          <p class="blue">Tienes 1 nuevos mensajes</p>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                              <span class="subject">
+                              <span class="from">Administrador</span>
+                              <span class="time">1 min</span>
+                              </span>
+                              <span class="message">
+                                  Bienvenido a la plataforma
+                              </span>
+                          </a>
+                      </li>
+                      
+                      <li>
+                          <a href="#">See all messages</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- inbox notificatoin end -->
+              <!-- alert notification start-->
+              <li id="alert_notificatoin_bar" class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                      <i class="icon-bell-l"></i>
+                      <span class="badge bg-important">7</span>
+                  </a>
+                  <ul class="dropdown-menu extended notification">
+                      <div class="notify-arrow notify-arrow-blue"></div>
+                      <li>
+                          <p class="blue">Tienes 0 Notificaciones</p>
+                      </li>
+                                         
+                      <li>
+                          <a href="#">See all notifications</a>
+                      </li>
+                  </ul>
+              </li>
+              <!-- alert notification end-->
+              <!-- user login dropdown start-->
+              <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                      <span class="profile-ava">
+                          <img alt="" src="{{user.avatar}}" width="45px" height="45px">
+                      </span>
+                      <span class="username">{{user.username}}</span>
+                      <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu extended logout">
+                      <div class="log-arrow-up"></div>
+                      <li class="eborder-top">
+                          <a href="{% url 'users:panel'%}"><i class="icon_profile"></i>Perfil</a>
+                      </li>
+                      
+                      <li>
+                          <a href="{% url 'users:logout'%}"><i class="icon_key_alt"></i> Log Out</a>
+                      </li>
+                      
+                  </ul>
+              </li>
+              <!-- user login dropdown end -->
+          </ul>
+          <!-- notificatoin dropdown end-->
+      </div>
+</header>      
+{% endblock %}
+<!--end header -->
+<!--start aside-->
+{%block aside%}
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+             <ul class="sidebar-menu">                
+                  {% if user.is_master %}
+                  <li class="sub-menu">
+                      <a class="active" href="javascript:;">
+                           <i class="icon_document_alt"></i>
+                          <span>Contenido</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">                        
+                        
+                          
+                          <li><a class="" href="{% url 'courses:Info' course.id%}">ver</a></li>
+                          <li><a class="" href="#subir_archivo">subir archivo</a></li>                             
+                                                                     
+                      </ul>
+                  </li>
+
+                  
+                  <li class="">
+                      <a class="" href="{% url 'courses:listStudents' course.id %}">
+                          <span>Lista de alumnos</span>
+                      </a>
+                  </li>
+                  {%else%}
+                  <li class="">
+                      <a class="" href="{% url 'courses:Info' course.id%}">
+                          <span>Contenido</span>
+                      </a>
+                  </li>
+                  {% endif %}
+                  <li class="sub-menu">
+                      <a class="active" href="javascript:;">
+                           
+                          <span>Tareas</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">                        
+                        
+                          
+                         {% if user.is_master%}
+                                <li><a class="" href="{% url 'courses:CreateHomework' course.id%}">Asignar Tarea</a></li>     <li><a class="" href="{% url 'courses:HomeworksCourse' course.id%}">Tareas del curso</a></li>  <li><a class="" href="{% url 'courses:HomeworksStudents' course.id%}">Tareas de Alumnos</a></li>
+                            {%else%}
+                                <li><a class="" href="{% url 'courses:CreateHomework' course.id%}">Entregar Tarea</a></li>
+                                <li><a class="" href="{% url 'courses:HomeworksUser' course.id%}">Mis tareas</a></li>
+                                <li><a class="" href="{% url 'courses:HomeworksCourse' course.id%}">Tareas del curso</a></li>
+                         {% endif %}                                      
+                      </ul>
+                  </li>
+                  
+              </ul>
+          </div>
+      </aside>
+{% endblock %}
+<!--end aside-->
+<!--start mainContent-->
+{% block mainContent%}
+     <!--main content start-->
+      <section id="main-content">
+        <section class="wrapper">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="page-header"><i class=""></i>{{course.materia}} {{course.salon}} 
+              {% if user.is_master%}
+                <button data-original-title="Codigo de acceso" data-content="{{course.codigo}}" data-placement="right" data-trigger="hover" class="btn btn-info popovers">
+                  Codigo
+                </button>
+              {% endif %}  
+              </h3>
+              <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                <li><i class="icon_documents_alt"></i>Descripcion del curso</li>
+                <li><i class=""></i>Curso {{course.materia}} {{course.salon}}</li>
+              </ol>
+            </div>
+          </div> 
+          <div id="editor" class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+              {{course.descripcion}}
+          </div>
+          
+
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 class="page-header">
+                <i class=""></i>Archivos del curso 
+              </h3>
+              <ol class="breadcrumb">
+                <li><i class="fa fa-home"></i><a href="index.html">Curso</a></li>
+                <li><i class="icon_documents_alt"></i>Archivos</li>
+                <li><i class=""></i>Curso {{course.materia}} {{course.salon}}</li>
+              </ol>
+            </div>
+          </div>      
+
+          <div class="row">
+              {%for file in files%}
+                <a href="{{file.docfile.url}}">
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="{% cycle  'info-box brown-bg' 'info-box dark-bg' 'info-box green-bg' %}">
+                      <div class="count">{{file.name}}</div>
+                      <div class="title" >{{file.docfile.size}} bytes</div>           
+                    </div><!--/.info-box-->     
+                  </div><!--/.col-->
+                </a>
+              {% endfor %}            
+            
+          </div><!--/.row--> 
+          {% if user.is_master%}
+          <div class="row">
+              <div class="col-lg-6">
+                  <section class="panel">
+                      <header class="panel-heading" >
+                          Subir archivo
+                      </header>
+                      <div class="panel-body">
+
+                          <form  enctype="multipart/form-data" method='POST'>{% csrf_token %}
+                              <div class="form-group">
+                                  <label for="exampleInputEmail1">Nombre del archivo</label>
+                                  {{form.nombre}}
+                                  {{form.nombre.errors}}
+                              </div>
+                              <div class="form-group">
+                                  <label for="exampleInputFile">Seleciona el archivo</label>
+                                  {{form.file}}
+                                  {{form.file.errors}}
+                                 
+                              </div>
+                              
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                              {{form.erros}}
+                          </form>
+                          <a name="subir_archivo"></a>
+
+                      </div>
+                  </section>
+              </div>
+            </div>  
+            {% endif %}
+                <!-- page end-->
+          </section>
+
+      </section>
+      <!--main content end-->
+{% endblock %}

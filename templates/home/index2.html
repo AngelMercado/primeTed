@@ -1,0 +1,109 @@
+{% extends 'baseHome.html'%}
+
+{% block title %}Login{% endblock %}
+
+{% block nav %}
+     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand page-scroll" href="#page-top">Plataforma de estudio</a>
+            </div> 
+        </div>
+    </nav>
+    <style type="text/css">
+      @import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+.panel-image img.panel-image-preview {
+    width: 100%;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.panel-heading ~ .panel-image img.panel-image-preview {
+  border-radius: 0px;
+}
+
+.panel-image ~ .panel-body, .panel-image.hide-panel-body ~ .panel-body {
+  overflow: hidden;
+}
+.panel-image ~ .panel-footer a {
+  padding: 0px 10px;
+  font-size: 1.3em;
+  color: rgb(100, 100, 100);
+}
+
+.panel-image.hide-panel-body ~ .panel-body {
+  height: 0px;
+  padding: 0px;
+}
+    </style>
+{% endblock %}
+{% block header-content %}
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+             
+             <h2>Convierte en un mejor maestro o Estudiante:</h2>
+             <div class="row form-group">
+        <div class="col-xs-12 col-md-1"></div>
+        <div class="col-xs-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-image hide-panel-body">
+                    <img src="http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52d09387ae003_1.JPG" class="panel-image-preview" />
+                </div>
+                <div class="panel-body">
+                    <h4>Title of Image</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper et.</p>
+                </div>
+                <div class="panel-footer text-center">
+                    <h3>Maestro</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-image hide-panel-body">
+                    <img src="http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52cf9489095e8_1.JPG" class="panel-image-preview" />
+                </div>
+                <div class="panel-body">
+                    <h4>Title of Image</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper et.</p>
+                </div>
+                <div class="panel-footer text-center">
+                    <h3>Estudiante</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-1"></div>
+
+                   
+                    
+        </div>
+    </div>
+</header>
+
+ 
+{% endblock %}
+
+{% block footer%}
+    <footer  id="contact">
+        <div class="container">
+            <div class="row">
+               <div class="col-lg-12 text-center">
+                    <h2 >Desarrolladores</h2>
+                    <hr class="primary">
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    
+                    <p>Angel Enrique Mercado</p>
+                    <p>myjava@outlook.es</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <p>Luis Miguel Sanavio</p>
+                    <p>me@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
