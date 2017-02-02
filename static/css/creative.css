@@ -178,7 +178,7 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url(../img/header.jpg);
+    background-image: url(../img/headerv2.jpg);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -210,7 +210,10 @@ header .header-content .header-content-inner p {
     font-weight: 300;
     color: rgba(255,255,255,.7);
 }
-
+.perfil-form{
+    position: relative;
+    top: 200px;
+}
 @media(min-width:768px) {
     header {
         min-height: 100%;

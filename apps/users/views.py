@@ -58,6 +58,7 @@ class RegistrateView(FormView):
 		user.avatar = 'https://psiiss.net/images/User-icon.png'
 		user.set_password(form.cleaned_data['password'])
 		is_master = form.cleaned_data['is_master']
+
 		if is_master=="True":
 			user.is_master = True
 			print("se creo un maetro")

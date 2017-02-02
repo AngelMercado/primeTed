@@ -1,0 +1,44 @@
+<aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu"> 
+              {% if user.is_master %}               
+                  <li class="">
+                      <a class="" href="{%url 'courses:CourseCreate' 10%}">
+                          <i class="icon_house_alt"></i>
+                          <span>Nuevo Grupo</span>
+                      </a>
+                  </li>
+              {% endif %}
+                  {%if not user.is_master %}
+                    <li class="">
+                      <a class="" href="{%url 'courses:Inscripcion' 10  %}">
+                          <span>INSCRIBIRME</span>
+                      </a>
+                  </li> 
+                  {% endif %}
+                  <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Grupos</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                          {%for course in courses%}
+
+                            <a style=""class="" href="{% url 'courses:Info' course.id%}"> 
+                              <li>
+                                <h9>{{course.materia}} {{course.salon}}</h9>
+                              </li>    
+                            </a>
+                                                       
+                          {%endfor%}
+                                                 
+                        </ul>
+                    </li>       
+                 
+                  
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>

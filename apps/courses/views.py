@@ -48,6 +48,21 @@ class CourseDetailView(LoginRequiredMixin,FormView):
 		return super(CourseDetailView,self).form_invalid(form)
 	#se usa esta funcion para enviar el id del curso
 
+class CourseActivityView(LoginRequiredMixin,TemplateView):
+	template_name='courses/activity_course.html'
+	login_url='/login'
+
+	def get_context_data(self,**kwargs):
+		context=super(CourseActivityView,self).get_context_data(**kwargs)
+		user = self.request.user
+		id_course = self.kwargs['pk']
+		course = Course.objects.get(id = id_course )
+		homeworks_course = Homework.objects.filter(curso = course, user=user)
+		context['course'] = course
+		context['homeworks_course'] = homeworks_course
+		return context	
+
+		
 class CourseListStudent(LoginRequiredMixin,TemplateView):
 	template_name='courses/alumnos_list.html'
 	login_url='/login'

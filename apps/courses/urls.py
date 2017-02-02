@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, include, url
-from .views import CreateCourse,CourseDetailView,CourseListStudent,CreateHomework,Inscripcion,HomeworksCourse,HomeworksUser,HomeworksStudents,DeleteStudent,RevisarView
+from .views import CreateCourse,CourseDetailView,CourseListStudent,CreateHomework,Inscripcion,HomeworksCourse,HomeworksUser,HomeworksStudents,DeleteStudent,RevisarView,CourseActivityView
 urlpatterns = patterns('',
 	url(r'^CourseCreate/(?P<pk>\d+)/$',CreateCourse.as_view(),name='CourseCreate'),#el name es el indentificador de la vista
 	url(r'^InfoCourse/(?P<pk>\d+)/$',CourseDetailView.as_view(),name='Info'),
+	url(r'^ActivityCourse/(?P<pk>\d+)$',CourseActivityView.as_view(),name="Activities"),
 	url(r'^listStudents/(?P<num>\d+)/$',CourseListStudent.as_view(),name='listStudents'),
 	url(r'^CreateHomework/(?P<pk>\d+)/$',CreateHomework.as_view(),name='CreateHomework'),
 	url(r'^Inscripcion/(?P<id_course>\d+)/$',Inscripcion.as_view(),name='Inscripcion'),

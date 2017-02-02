@@ -1,0 +1,58 @@
+<aside>
+          <div id="sidebar"  class="nav-collapse ">
+             <ul class="sidebar-menu">                
+                  {% if user.is_master %}
+                  <li class="sub-menu">
+                      <a class="active" href="javascript:;">
+                           <i class="icon_document_alt"></i>
+                          <span>Contenido</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">                        
+                        
+                          
+                          <li><a class="" href="{% url 'courses:Info' course.id%}">ver</a></li>
+                          <li><a class="" href="#subir_archivo">subir archivo</a></li>                             
+                                                                     
+                      </ul>
+                  </li>
+
+                  <li>
+                    <a href="{%url 'courses:Activities' course.id%}">
+                      <span>Actividades</span>
+                    </a>
+                  </li>
+                  <li class="">
+                      <a class="" href="{% url 'courses:listStudents' course.id %}">
+                          <span>Lista de alumnos</span>
+                      </a>
+                  </li>
+                  {%else%}
+                  <li class="">
+                      <a class="" href="{% url 'courses:Info' course.id%}">
+                          <span>Contenido</span>
+                      </a>
+                  </li>
+                  {% endif %}
+                  <li class="sub-menu">
+                      <a class="active" href="javascript:;">
+                           
+                          <span>Tareas</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">                        
+                        
+                          
+                         {% if user.is_master%}
+                                <li><a class="" href="{% url 'courses:CreateHomework' course.id%}">Asignar Tarea</a></li>     <li><a class="" href="{% url 'courses:HomeworksCourse' course.id%}">Tareas del curso</a></li>  <li><a class="" href="{% url 'courses:HomeworksStudents' course.id%}">Tareas de Alumnos</a></li>
+                            {%else%}
+                                <li><a class="" href="{% url 'courses:CreateHomework' course.id%}">Entregar Tarea</a></li>
+                                <li><a class="" href="{% url 'courses:HomeworksUser' course.id%}">Mis tareas</a></li>
+                                <li><a class="" href="{% url 'courses:HomeworksCourse' course.id%}">Tareas del curso</a></li>
+                         {% endif %}                                      
+                      </ul>
+                  </li>
+                  
+              </ul>
+          </div>
+      </aside>

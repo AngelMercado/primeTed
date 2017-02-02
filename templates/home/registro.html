@@ -12,6 +12,32 @@
     </nav>
 {% endblock %}
 {% block header-content %}
+  <style type="text/css">
+      @import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+.panel-image img.panel-image-preview {
+    width: 100%;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.panel-heading ~ .panel-image img.panel-image-preview {
+  border-radius: 0px;
+}
+
+.panel-image ~ .panel-body, .panel-image.hide-panel-body ~ .panel-body {
+  overflow: hidden;
+}
+.panel-image ~ .panel-footer a {
+  padding: 0px 10px;
+  font-size: 1.3em;
+  color: rgb(100, 100, 100);
+}
+
+.panel-image.hide-panel-body ~ .panel-body {
+  height: 0px;
+  padding: 0px;
+}
+    </style>
  <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -19,13 +45,16 @@
                  <h2>Introduce tu información</h2>
                   <form role="form"  method="POST">
                     {%csrf_token%}
+                    
                     <div class="container-fluid">
-                          <div class="row ">
+                          <div class="row">
                                 <div class="col-sm-5 col-md-4">
                                     
                                 </div>
                                 <div class="col-sm-5 col-md-4">
                                     <!-- input nombre-->
+                                  
+                                    
                                     {{form.is_master}}
                                     {{form.is_master.errors}}
                                     {{form.username}}
@@ -96,6 +125,7 @@
                                 <div class="col-sm-5 col-md-4">
                                     <!-- input password-->
                                     {{form.password}}
+                                    {{form.password.errors}}
                                 </div>
                                 <div class="col-sm-5 col-md-4">
                                    
@@ -110,7 +140,9 @@
                                 </div>
                                 <div class="col-sm-5 col-md-4">
                                   <!-- input confirmar password-->
-                                    <input type="password" class="form-control" placeholder="Confirma tu password" required>
+                                  {{form.remainder}}
+                                  
+                                  
                                 </div>
                                 <div class="col-sm-5 col-md-4">
                                    
